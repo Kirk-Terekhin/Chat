@@ -1,0 +1,165 @@
+.btn {
+    width: 100%;
+}
+
+.chat__body {
+  height: 500px;
+  overflow-y: scroll;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.chat__users {
+  background-color: #D9534F;
+  color: #fff;
+}
+.chat__user_item,
+.chat__message_item {
+  padding: 5px 0px;
+}
+
+.my_avatar {
+  height: 46px;
+  margin-right: 15px;
+  border-radius: 6px;
+}
+.my_name {
+
+}
+.chat__user_item {
+}
+.user_name {
+
+}
+.message_avatar,
+.user_avatar {
+margin-right: 10px;
+}
+.chat__footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+
+
+/*message*/
+.message_item,
+.avatar_container {
+  display: inline-block;
+  vertical-align: top;
+}
+.avatar_container {
+}
+
+.avatar {
+  height: 62px;
+  border-radius: 6px;
+  max-width: 100%;
+  margin-right: 10px;
+}
+.text-right .avatar {
+  margin-right: 0;
+  margin-left: 10px;
+}
+.message_item {
+
+}
+.item_name {
+  font-weight: bold;
+}
+.item_text {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.item_text.bg-info {
+  border-color: #b1e5ff;
+}
+
+
+
+
+/*modal*/
+.modal__wrap {
+  position: absolute;
+  top: 0;bottom: 0;left: 0;right: 0;
+  background-color: #fff;
+}
+.modal__body {
+
+}
+.modal__body_login {
+  width: 30%;
+  margin: 200px auto 0px;
+}
+.modal__body_input,
+.modal__body_button {
+  margin-bottom: 10px;
+}
+.modal__body_input {}
+.modal__body_button {}
+
+
+
+
+
+.modal__wrapper {
+
+}
+.modal__avatar {
+  position: absolute;
+  top: 0;bottom: 0;left: 0;right: 0;
+  padding: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  opacity: 0;
+  transition-duration: .5s;
+}
+.modal__body_drop-image {
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+}
+.button_container {
+  padding-top: 15px;
+}
+.btn_auto {
+  width: auto;
+}
+.drop_zone {
+  color: #ccc;
+  padding: 60px 15px;
+  border: 3px dashed #ccc;
+  border-radius: 6px;
+  text-align: center;
+}
+.modal__preview {
+  padding-top: 15px;
+  display: none;
+}
+.modal__preview_preview {
+
+}
+.modal__preview_original {
+
+}
+.image__container_preview {
+  width: 46px;
+  height: 46px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.image__preview {
+
+}
+.image__preview_preview {
+  width: 100%;
+}
+.image__preview_original {
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
