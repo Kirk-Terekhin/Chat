@@ -1,11 +1,9 @@
-go to local server
+Работает с установленным Node.js и только на локальном сервере
+для запуска открыть консоль и выполнить следующие команды:
+1. Перейти в папку с доменами вашего локального сервера
+2. git clone https://github.com/Deathmetalldrummer/chat.git chat
+3. cd chat/server
+4. npm i
+5. npm start
 
-git clone https://github.com/Deathmetalldrummer/chat.git chat
-
-cd chat/server
-
-npm i
-
-npm start
-
-run local server
+Запустить сервер и перейти по адресу http://chat/
