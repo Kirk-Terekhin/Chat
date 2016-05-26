@@ -1,8 +1,8 @@
-var modal = document.querySelector('.modal__wrap');
 submit.addEventListener('click', function(){
   func();
 });
 
+//основная функция
 function func() {
   var userName = Name.value;
   var userLogin = Login.value;
@@ -10,6 +10,8 @@ function func() {
   var myAvatar = document.querySelector('.my_avatar');
   myAvatar.setAttribute('src', 'http://localhost:5000/photos/'+userLogin);
   myAvatar.setAttribute('data-login', userLogin);
+
+  var modal = document.querySelector('.modal__wrap');
 
   var connection = new WebSocket('ws://127.0.0.1:5000');
   connection.onmessage = function(e) {
@@ -53,11 +55,11 @@ function func() {
                 addUser(item.name ,item.login);
               });
               modal.style.display = 'none';
-              myName.textContent = userLogin;
+              myName.textContent = userLogin; //вывожу свое имя
         break;
       case 'message':
               if (dataUser.name === userName && dataUser.login === userLogin) {//если сообщение оправил я
-                addMessage(data.body, dataUser.login, true);// разрешаю применить стили
+                addMessage(data.body, dataUser.login, true);
               }else {//сообщение отправил не я
                 addMessage(data.body, dataUser.login);
               }
@@ -94,7 +96,7 @@ function func() {
     });
   }
 
-  function addMessage(message, login, my) {
+  function addMessage(message, login, my) {//шаблон и вывод сообщения
     if (!message.trim()) {
        return;
     }
@@ -133,7 +135,7 @@ function func() {
     chatMessageContainer.scrollTop = chatMessageContainer.scrollHeight;
   }
 
-  function addUser(name, login) {
+  function addUser(name, login) {//шаблон и вывод пользователей
     var chatUser = document.querySelector('.chat__body_user');
     var userItemDiv = document.createElement('div');
 
@@ -155,7 +157,7 @@ function func() {
     }
   }
 
-  function ajaxAvatar(file) {
+  function ajaxAvatar(file) {//отправка аватарки на сервер
     var loadImage = document.querySelector('.load_image');
     loadImage.addEventListener('click', function () {
       var user = userName + '_' + userLogin;
@@ -178,7 +180,7 @@ function func() {
     });
   }
 
-  function createPreview(file) {
+  function createPreview(file) {//превью аватарки перед загрузкой
     var reader = new FileReader();
     reader.addEventListener('load', function (e) {
       var imageResult = e.target.result;
@@ -192,15 +194,14 @@ function func() {
     reader.readAsDataURL(file);
   }
 
-  // вызывается при изменении аватарки
-  function replaceAvatar(login) {
+  function replaceAvatar(login) {// вызывается при изменении аватарки
     var img = document.querySelectorAll('img[data-login="'+login+'"]');
     for (var i = 0; i < img.length; i++) {
       img[i].setAttribute('src','http://localhost:5000/photos/'+login+'?'+Math.random());
     }
   }
 
-  function tenMessage(message) {
+  function tenMessage(message) {//вывод последних 10 сообщений
     for (var i = 0; i < message.length; i++) {
       if (message[i].user.name === userName && message[i].user.login === userLogin) {//если сообщение оправил я
         addMessage(message[i].body, message[i].user.login, true);
@@ -210,6 +211,7 @@ function func() {
       }
     }
 
+  //получаем файл
   var dropZone = document.querySelector('input[type="file"]');
   dropZone.addEventListener('change',function (e) {
     e.stopPropagation();
@@ -220,6 +222,7 @@ function func() {
     createPreview(file);
   })
 
+  //модальное окно загрузки аватарки
   var myAvatar = document.querySelector('.my_avatar');
   var modalClose = document.querySelector('.modal_close');
   var modalAvatar = document.querySelector('.modal__avatar');
@@ -232,7 +235,7 @@ function func() {
     modalAvatar.removeAttribute('style');
   });
 
-  function chatBodyHeight() {
+  function chatBodyHeight() {//резиновая высота
     var chatHeader = document.querySelectorAll('.chat__header');
     var chatBody = document.querySelectorAll('.chat__body');
     var chatFooter = document.querySelectorAll('.chat__footer');
@@ -243,4 +246,5 @@ function func() {
     window.addEventListener('resize', chatBodyHeight);
   }
   chatBodyHeight();
+
 }// close func
