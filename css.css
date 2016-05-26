@@ -1,3 +1,6 @@
+html,body,.chat {
+  height: 100%;
+}
 .btn {
     width: 100%;
 }
@@ -7,6 +10,7 @@
   overflow-y: scroll;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  padding-right: 5px;
 }
 .chat__users {
   background-color: #D9534F;
@@ -108,13 +112,14 @@ margin-right: 10px;
 
 }
 .modal__avatar {
-  position: absolute;
+  position: fixed;;
   top: 0;bottom: 0;left: 0;right: 0;
   padding: 50px;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: -1;
   opacity: 0;
   transition-duration: .5s;
+  overflow: auto;
 }
 .modal__body_drop-image {
   width: 60%;
@@ -134,6 +139,18 @@ margin-right: 10px;
   border: 3px dashed #ccc;
   border-radius: 6px;
   text-align: center;
+  position: relative;
+}
+.drop_zone input[type='file'] {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+  display: block;
+  outline: none;
+  opacity: 0;
 }
 .modal__preview {
   padding-top: 15px;
@@ -142,24 +159,28 @@ margin-right: 10px;
 .modal__preview_preview {
 
 }
-.modal__preview_original {
-
-}
 .image__container_preview {
-  width: 46px;
-  height: 46px;
+  width: 100%;
   overflow: hidden;
-  border: 1px solid #ccc;
-  border-radius: 6px;
 }
 .image__preview {
-
-}
-.image__preview_preview {
   width: 100%;
 }
-.image__preview_original {
-  max-width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+
+
+
+.chat__body::-webkit-scrollbar {
+    width:5px;
+}
+.chat__body::-webkit-scrollbar-button {
+    background-color:transparent;
+    height: 0px;
+}
+.chat__body::-webkit-scrollbar-track {
+}
+.chat__body::-webkit-scrollbar-thumb {
+    background-color: #c4c4c4;
+    border-radius: 10px;
+}
+.chat__body::-webkit-scrollbar-corner {
 }

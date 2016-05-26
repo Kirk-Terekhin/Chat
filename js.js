@@ -6,6 +6,11 @@ submit.addEventListener('click', function(){
 function func() {
   var userName = Name.value;
   var userLogin = Login.value;
+
+  var myAvatar = document.querySelector('.my_avatar');
+  myAvatar.setAttribute('src', 'http://localhost:5000/photos/'+userLogin);
+  myAvatar.setAttribute('data-login', userLogin);
+
   var connection = new WebSocket('ws://127.0.0.1:5000');
   connection.onmessage = function(e) {
     //пришло сообщение от сервер, надо его обработать
@@ -67,7 +72,6 @@ function func() {
               replaceAvatar(dataUser.login);
         break;
       default:
-        // console.log("Sorry, we are out of " + xx + ".");
     }
   }
 
@@ -101,7 +105,7 @@ function func() {
 
     var itemArr = [
       '<div class="avatar_container">',
-        '<img src="server/no-photo.jpg" alt="" class="avatar" data-login="',login,'">',
+        '<img src="http://localhost:5000/photos/'+login+'?'+Math.random()+'" alt="" class="avatar" data-login="',login,'">',
       '</div>',
       '<div class="message_item">',
         '<div class="item_name">',login,'</div>',
@@ -117,7 +121,7 @@ function func() {
           '<div class="item_text bg-info">',message,'</div>',
         '</div>',
         '<div class="avatar_container">',
-          '<img src="server/no-photo.jpg" alt="" class="avatar" data-login="',login,'">',
+          '<img src="http://localhost:5000/photos/'+login+'?'+Math.random()+'" alt="" class="avatar" data-login="',login,'">',
         '</div>'
       ];
       item.className = 'chat__message_item text-right';
@@ -135,7 +139,7 @@ function func() {
 
     userItemDiv.className = 'chat__user_item h4';
     userItemDiv.setAttribute('data-user', name+'-'+login);
-    userItemDiv.textContent = name + ' (' + login + ')';
+    userItemDiv.textContent = login;
     chatUser.appendChild(userItemDiv);
     chatUser.scrollTop = chatUser.scrollHeight;
   }
@@ -166,7 +170,7 @@ function func() {
 
       if (xhr.status != 200) {
        // обработать ошибку
-       alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+       console.log( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
       } else {
        // вывести результат
        console.log('аватар загружен'); // responseText -- текст ответа.
@@ -179,24 +183,20 @@ function func() {
     reader.addEventListener('load', function (e) {
       var imageResult = e.target.result;
 
-      var imagePreview = document.querySelector('.image__preview_preview');
-      var imageOriginal = document.querySelector('.image__preview_original');
+      var imagePreview = document.querySelector('.image__preview');
       var modalPreview = document.querySelector('.modal__preview');
 
       imagePreview.setAttribute('src', imageResult);
-      imageOriginal.setAttribute('src', imageResult);
       modalPreview.style.display = 'block';
     });
     reader.readAsDataURL(file);
   }
 
+  // вызывается при изменении аватарки
   function replaceAvatar(login) {
-    var myAvatar = document.querySelector('.my_avatar');
-    myAvatar.setAttribute('data-login', userLogin);
-
     var img = document.querySelectorAll('img[data-login="'+login+'"]');
     for (var i = 0; i < img.length; i++) {
-      img[i].setAttribute('src','server/photos/'+login+'.jpg');
+      img[i].setAttribute('src','http://localhost:5000/photos/'+login+'?'+Math.random());
     }
   }
 
@@ -210,20 +210,15 @@ function func() {
       }
     }
 
-  var dropZone = document.querySelector('.drop_zone');
-  dropZone.addEventListener('dragover', function (e) {
-    e.stopPropagation();
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy';
-  }, false);
-  dropZone.addEventListener('drop', function (e) {
+  var dropZone = document.querySelector('input[type="file"]');
+  dropZone.addEventListener('change',function (e) {
     e.stopPropagation();
     e.preventDefault();
 
-    var file = e.dataTransfer.files[0];//для аватара хватит и одной картинки
-    createPreview(file);
+    var file = e.target.files[0];//для аватара хватит и одной картинки
     ajaxAvatar(file);
-  }, false);
+    createPreview(file);
+  })
 
   var myAvatar = document.querySelector('.my_avatar');
   var modalClose = document.querySelector('.modal_close');
@@ -237,4 +232,15 @@ function func() {
     modalAvatar.removeAttribute('style');
   });
 
+  function chatBodyHeight() {
+    var chatHeader = document.querySelectorAll('.chat__header');
+    var chatBody = document.querySelectorAll('.chat__body');
+    var chatFooter = document.querySelectorAll('.chat__footer');
+    var bodyHeight = document.body.clientHeight;
+    for (var i = 0; i < 2; i++) {
+      chatBody[i].setAttribute('style', 'height:'+(bodyHeight - chatHeader[i].clientHeight - chatFooter[i].clientHeight - 30)+'px');
+    }
+    window.addEventListener('resize', chatBodyHeight);
+  }
+  chatBodyHeight();
 }// close func

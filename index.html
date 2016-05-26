@@ -1,76 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css.css" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="container-fluid chat">
-  <div class="row">
-    <div class="col-xs-3 chat__users">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="chat__header h2">Пользователи</div>
-          <div class="chat__body chat__body_user"></div>
-          <div class="chat__footer">
-            <img src="server/no-photo.jpg" alt="" class="my_avatar">
-            <span class="my__name h3">myName</span>
+  <div class="container-fluid chat">
+    <div class="row">
+      <div class="col-xs-3 chat__users">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="chat__header h2">Пользователи</div>
+            <div class="chat__body chat__body_user"></div>
+            <div class="chat__footer">
+              <img src="server/no-photo.jpg" alt="" class="my_avatar">
+              <span class="my__name h3">myName</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-xs-9 chat__messages">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="chat__header h2">Сообщения</div>
-          <div class="chat__body chat__body_message"></div>
-          <div class="chat__footer row">
-            <div class="col-sm-10">
-              <input type="text" class="form-control input-lg" id="messageText" placeholder="Написать сообщение..." value="">
-            </div>
-            <div class="col-sm-2">
-              <button type="button" class="btn btn-success btn-lg" id="messageOk">Ок</button>
+      <div class="col-xs-9 chat__messages">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="chat__header h2">Сообщения</div>
+            <div class="chat__body chat__body_message"></div>
+            <div class="chat__footer row">
+              <div class="col-sm-10">
+                <input type="text" class="form-control input-lg" id="messageText" placeholder="Написать сообщение..." value="">
+              </div>
+              <div class="col-sm-2">
+                <button type="button" class="btn btn-success btn-lg" id="messageOk">Ок</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal__wrap modal__login">
-  <div class="modal__body modal__body_login">
-    <input type="text" class="modal__body_input form-control" id="Name" placeholder="Name">
-    <input type="text" class="modal__body_input form-control" id="Login" placeholder="Login">
-    <button type="button" class="modal__body_button btn btn-success" id="submit">Submit</button>
+  <div class="modal__wrap modal__login">
+    <div class="modal__body modal__body_login">
+      <input type="text" class="modal__body_input form-control" id="Name" placeholder="Name">
+      <input type="text" class="modal__body_input form-control" id="Login" placeholder="Login">
+      <button type="button" class="modal__body_button btn btn-success" id="submit">Submit</button>
+    </div>
   </div>
-</div>
 
-<div class="modal__wrapper modal__avatar">
-  <div class="modal__body modal__body_drop-image">
-    <div class="drop_zone">Перетащите изображение</div>
-    <div class="modal__preview row">
-      <div class="col-sm-6 modal__preview_preview">
-        <h4>Preview</h4>
-        <div class="image__container_preview">
-          <img src="" class="image__preview image__preview_preview" alt="" />
+  <div class="modal__wrapper modal__avatar">
+    <div class="modal__body modal__body_drop-image">
+      <div class="drop_zone">Перетащите сюда  или нажмите здесь для загрузки изображения
+        <input type="file" name="name">
+      </div>
+      <span class="text-muted">Поддерживаются файлы <b class="text-danger">только</b> формата jpg</span>
+      <div class="modal__preview row">
+        <div class="col-sm-6 modal__preview_preview">
+          <h4>Preview</h4>
+          <div class="image__container_preview">
+            <img src="" class="image__preview" alt="" />
+          </div>
         </div>
       </div>
-      <div class="col-sm-6 modal__preview_original">
-        <h4>Original</h4>
-        <img src="" class="image__preview image__preview_original" alt="" />
-      </div>
-    </div>
       <div class="button_container">
         <button type="button" class="btn btn_auto btn-success load_image">Загрузить</button>
         <button type="button" class="btn btn_auto btn-danger modal_close pull-right">Закрыть</button>
       </div>
+    </div>
   </div>
-</div>
 
-<script src="js.js"></script>
+  <script src="js.js"></script>
 </body>
+
 </html>
