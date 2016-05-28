@@ -17,7 +17,6 @@ function func() {
   connection.onmessage = function(e) {
     //пришло сообщение от сервер, надо его обработать
     swich(e);
-    console.log(JSON.parse(e.data));
   };
 
   connection.onerror = function(у) {
