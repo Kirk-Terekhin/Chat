@@ -4,7 +4,7 @@
 
 1. Перейти в папку с доменами вашего локального сервера
 
-2. git clone https://github.com/Deathmetalldrummer/chat.git chat
+2. git clone https://github.com/Kirk-Terekhin/Chat.git chat
 
 3. cd chat/server
 
